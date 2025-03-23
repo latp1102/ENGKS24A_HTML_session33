@@ -1,0 +1,160 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show/Hide Password</title>
+  <style>
+    .password-container {
+      position: relative;
+      width: 300px;
+    }
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 40px 10px 10px;
+      font-size: 16px;
+    }
+    .eye-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="password-container">
+    <input type="password" id="passwordInput" placeholder="Enter your password">
+    <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png" width="20" height="20" class="eye-icon" id="eyeIcon">
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('passwordInput');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    let isPasswordVisible = false;
+
+    eyeIcon.addEventListener('click', function() {
+      if (isPasswordVisible) {
+        passwordInput.type = 'password';
+      } else {
+        passwordInput.type = 'text';
+      }
+      isPasswordVisible = !isPasswordVisible;
+    });
+  </script>
+
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Đếm số ký tự</title>
+  <style>
+    textarea {
+      width: 300px;
+      height: 50px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 5px 10px;
+    }
+    p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <textarea id="inputText"></textarea>
+  <p id="count">0 ký tự</p>
+  <button id="checkBtn">kiểm tra</button>
+
+  <script>
+    // Lấy các phần tử DOM
+    const inputText = document.getElementById('inputText');
+    const countDisplay = document.getElementById('count');
+    const checkBtn = document.getElementById('checkBtn');
+
+    // Thêm sự kiện click cho nút
+    checkBtn.addEventListener('click', function() {
+      const text = inputText.value;
+      const length = text.length;
+      countDisplay.textContent = length + ' ký tự';
+    });
+  </script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lọc sản phẩm</title>
+  </head>
+  <body>
+    <h2>Danh mục sản phẩm</h2>
+
+    <!-- Dropdown chọn danh mục -->
+    <select id="category">
+      <option value="">-- Chọn danh mục --</option>
+      <option value="Đồ ăn">Đồ ăn</option>
+      <option value="Nước">Nước</option>
+      <option value="Dụng cụ">Dụng cụ</option>
+    </select>
+
+    <!-- Nút lọc -->
+    <button id="filter">Lọc</button>
+
+    <!-- Danh sách sản phẩm -->
+    <ul id="productList"></ul>
+
+    <script>
+      // Dữ liệu sản phẩm
+      const products = [
+        { name: "Rau sạch", category: "Đồ ăn" },
+        { name: "Thịt lợn", category: "Đồ ăn" },
+        { name: "Pepsi không calo", category: "Nước" },
+        { name: "Cocacola", category: "Nước" },
+        { name: "Cờ lê", category: "Dụng cụ" },
+        { name: "Tuy vít", category: "Dụng cụ" },
+      ];
+
+      const categorySelect = document.getElementById("category");
+      const filterBtn = document.getElementById("filter");
+      const productList = document.getElementById("productList");
+
+      // Hàm hiển thị danh sách sản phẩm
+      function showProducts(items) {
+        productList.innerHTML = ""; // Xóa danh sách cũ
+        items.forEach((product) => {
+          const li = document.createElement("li");
+          li.textContent = `${product.name} (${product.category})`;
+          productList.appendChild(li);
+        });
+      }
+
+      // Ban đầu hiển thị tất cả
+      showProducts(products);
+
+      // Sự kiện khi bấm nút lọc
+      filterBtn.addEventListener("click", () => {
+        const selectedCategory = categorySelect.value;
+        const filtered = selectedCategory
+          ? products.filter((p) => p.category === selectedCategory)
+          : products; // Nếu không chọn, hiển thị tất cả
+        showProducts(filtered);
+      });
+      categorySelect.addEventListener("change", () => {
+        const selectedCategory = categorySelect.value;
+        const filtered = selectedCategory
+          ? products.filter((p) => p.category === selectedCategory)
+          : products;
+        showProducts(filtered);
+      });
+    </script>
+  </body>
+</html>

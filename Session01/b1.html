@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .password-container {
+        position: relative;
+        width: 300px;
+        margin: 100px;
+      }
+
+      #passwordInput {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+      }
+
+      .eye-icon {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        width: 20px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="password-container">
+      <input type="password" id="passwordInput" placeholder="nhập mật khẩu" />
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/159/159604.png"
+        class="eye-icon"
+        id="eyeIcon"
+      />
+    </div>
+    <script>
+      const passwordInput = document.getElementById("passwordInput");
+      const eyeIcon = document.getElementById("eyeIcon");
+
+      let isPasswordVisible = false;
+      eyeIcon.addEventListener("click", function () {
+        if (isPasswordVisible) {
+          passwordInput.type = "password";
+        } else {
+          passwordInput.type = "text";
+        }
+        isPasswordVisible = !isPasswordVisible;
+      });
+    </script>
+  </body>
+</html>

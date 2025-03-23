@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        background-color: #f9f9f9;
+      }
+      h2 {
+        color: #333;
+      }
+      select,
+      button {
+        padding: 8px 12px;
+        margin-right: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      ul {
+        margin-top: 20px;
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Danh sách sản phẩm</h2>
+    <select id="categorySelect">
+      <option value="">-- Lựa chọn danh mục --</option>
+      <option value="Đồ ăn">Đồ ăn</option>
+      <option value="Nước">Nước</option>
+      <option value="Dụng cụ">Dụng cụ</option>
+    </select>
+    <button onclick="filterDish()">Lọc</button>
+    <ul id="dishList"></ul>
+    <script>
+      let dish = [
+        {
+          name: "Rau sạch",
+          category: "Đồ ăn",
+        },
+        {
+          name: "Thịt lợn",
+          category: "Đồ ăn",
+        },
+        {
+          name: "Pepsi không calo",
+          category: "Nước",
+        },
+        {
+          name: "Cocacola",
+          category: "Nước",
+        },
+        {
+          name: "Cờ lê",
+          category: "Dụng cụ",
+        },
+        {
+          name: "Tuy vít",
+          category: "Dụng cụ",
+        },
+      ];
+
+      function displayDish(dishes) {
+        let dishList = document.getElementById("dishList");
+        dishList.innerHTML = "";
+        dishes.forEach((item) => {
+          let li = document.createElement("li");
+          li.innerHTML = `<strong>Tên sản phẩm:</strong> ${item.name} - <strong>Danh mục:</strong> ${item.category}`;
+          dishList.appendChild(li);
+        });
+      }
+
+      function filterDish() {
+        let selectedCategory = document.getElementById("categorySelect").value;
+        if (selectedCategory === "") {
+          displayDish(dish);
+        } else {
+          let filtered = dish.filter(
+            (item) => item.category === selectedCategory
+          );
+          displayDish(filtered);
+        }
+      }
+
+      displayDish(dish);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      h2 {
+        margin-bottom: 10px;
+      }
+      .search-bar {
+        margin-bottom: 20px;
+      }
+      input {
+        padding: 10px;
+        width: 70%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        padding: 10px 15px;
+        background-color: green;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .product {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px 0;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .product img {
+        width: 150px;
+        height: auto;
+        border-radius: 5px;
+      }
+      .product-info {
+        flex: 1;
+      }
+      .product-info h3 {
+        margin: 5px 0;
+      }
+      .product-info p {
+        margin: 5px 0;
+      }
+      .buy-btn {
+        background-color: #007bff;
+        padding: 8px 12px;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .buy-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Tìm kiếm sản phẩm</h2>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Nhập tên sản phẩm..." />
+      <button onclick="searchProduct()">Search</button>
+    </div>
+    <div id="productList"></div>
+    <script>
+      const products = [
+        {
+          name: "Laptop Dell XPS 15",
+          description:
+            "Laptop cao cấp với màn hình 15 inch, CPU Intel Core i7 và RAM 16GB.",
+          price: "35,990,000 VNĐ",
+          image: "https://laptop88.vn/media/news/2608_laptop-dell-17.jpg",
+        },
+        {
+          name: "iPhone 14 Pro Max",
+          description:
+            "Điện thoại Apple cao cấp, màn hình 6.7 inch, chip A16 Bionic.",
+          price: "33,990,000 VNĐ",
+          image:
+            "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-geo-240909-lp.jpg.news_app_ed.jpg",
+        },
+        {
+          name: "Tai nghe AirPods Pro",
+          description: "Tai nghe chống ồn chủ động, thời lượng pin 24 giờ.",
+          price: "5,790,000 VNĐ",
+          image:
+            "https://cdn.tgdd.vn/Files/2021/12/12/1403912/airpods-la-gi-tim-hieu-ve-cac-loai-airpods-moi-nha-5.jpg",
+        },
+      ];
+
+      function displayProducts(filteredProducts) {
+        const productList = document.getElementById("productList");
+        productList.innerHTML = "";
+        if (filteredProducts.length === 0) {
+          productList.innerHTML = "<p>Không tìm thấy sản phẩm nào!</p>";
+          return;
+        }
+        filteredProducts.forEach((product) => {
+          const productDiv = document.createElement("div");
+          productDiv.className = "product";
+          productDiv.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <p><strong>${product.price}</strong></p>
+            <button class="buy-btn">Buy</button>
+          </div>
+        `;
+          productList.appendChild(productDiv);
+        });
+      }
+
+      displayProducts(products);
+    </script>
+  </body>
+</html>
